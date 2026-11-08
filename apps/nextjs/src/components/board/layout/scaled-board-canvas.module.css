@@ -21,10 +21,15 @@
 .canvas {
   position: absolute;
   inset: 0 auto auto 0;
+}
 
+.canvas,
+.canvas :global([data-grid-section-id]) {
   /*
    * Keep dashboard UI at its normal readable density while the fixed canvas
-   * is fitted to the available width.
+   * is fitted to the available width. Rebind these tokens at each grid's zoom
+   * boundary: inherited custom properties have already resolved var() against
+   * the parent's UI scale and won't pick up a nested grid's local override.
    */
   --mantine-scale: var(--board-canvas-ui-scale, 1);
   /* Keep a subtle boundary inset without widening the visual gap too much. */
